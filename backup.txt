@@ -1,0 +1,30 @@
+@echo off
+setlocal
+
+REM Copy the memory card files from PCSX2
+xcopy /e /i /y C:\Users\J\Downloads\pcsx2-v1.7.5474-windows-x64-Qt\memcards C:\RetroArch-Win64\saves\memcards
+
+REM Check if there are any changes in the git repository
+git status --porcelain >nul 2>&1
+if errorlevel 1 (
+    echo "No changes detected"
+    exit /b 0
+)
+
+echo "Changes detected"
+
+REM Add all changes to git
+git add -A
+
+REM Commit the changes with a timestamp(Finnish time format, I recommend changing it)
+for /f "tokens=1-5 delims=:. " %%a in ("%date% %time%") do (
+    set datetime=%%c-%%b-%%a %%d:%%e:%%f EET
+)
+git commit -m "Update [%datetime%]"
+
+REM Push the changes to the remote repository
+git push
+
+endlocal
+
+pause
