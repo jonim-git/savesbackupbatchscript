@@ -1,6 +1,6 @@
 # savesbackupbatchscript
 
-Emulator saves progress (batch format ver). Shell format script originally done by [Christian Legge](https://github.com/christianlegge/).
+ A script which autocommits emulator saves if it detects changes in local saves folder. Also copies ps2 saves to same save folder. Shell format script originally done by [Christian Legge](https://github.com/christianlegge/).
 
 **Usage:**
 
